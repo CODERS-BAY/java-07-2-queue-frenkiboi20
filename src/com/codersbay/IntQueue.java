@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class IntQueue {
 
-    public ArrayList<Integer> intQueues;
+    public ArrayList<Integer> getIntQueues() {
+        return intQueues;
+    }
+
+    private ArrayList<Integer> intQueues;
 
     public IntQueue() {
         intQueues = new ArrayList<>();
@@ -28,12 +32,14 @@ public class IntQueue {
     }
 
     public int[] dequeue(int n) {
-        int nums[] = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = intQueues.get(i);
-            intQueues.remove(intQueues.get(i));
-        }
-        return nums;
+        if (!intQueues.isEmpty()) {
+            int nums[] = new int[n];
+            for (int i = 0; i < n; i++) {
+                nums[i] = intQueues.get(i);
+                intQueues.remove(intQueues.get(i));
+            }
+            return nums;
+        } else throw new QueueTooSmallException();
     }
 
 
